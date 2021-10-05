@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form validation</title>
+    <style>
+        body {
+            background-color: cadetblue;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        #form-container {
+
+            background-color: white;
+            padding: 50px 100px;
+            text-align: center;
+
+        }
+
+        h2 {
+            margin: 0 0 10px 0;
+        }
+
+        input {
+            width: 200px;
+            margin: 10px 0;
+            padding: 10px;
+        }
+
+        .submit {
+            font-size: 15px;
+            font-weight: bold;
+            width: 220px;
+            background-color: cadetblue;
+            color: white;
+            border: none;
+        }
+
+        .error {
+            color: red;
+            margin: 0;
+            text-align: left;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="form-container">
+        <h1>Login</h1>
+        <form action="" onsubmit="return validateform()">
+            <input type="text" placeholder="Username" id="Username"><br>
+            <p id="usererror" class="error"></p>
+            <input type="password" placeholder="Password" id="Password"><br>
+            <p id="passerror" class="error"></p>
+            <input type="submit" id="submit" class="submit">
+        </form>
+    </div>
+    <script>
+        let Username = document.getElementById('Username');
+        let Password = document.getElementById('Password');
+        let flag = 1;
+
+        function validateform() {
+            if (Username.value == "") {
+                document.getElementById("usererror").innerHTML = "Username Empty";
+                
+            flag = 0; 
+            }          
+            else if(Username.value.length<10){
+                document.getElementById("usererror").innerHTML = "Username required minimum 10 characters";
+                flag = 0; 
+                console.log(Username.value.length);
+            }else{
+                document.getElementById("usererror").innerHTML = "";
+                flag = 1;
+            }
+
+            if(Password.value == ""){
+                document.getElementById("passerror").innerHTML = "Password Empty";
+                flag = 0; 
+
+            }else if(Password.value.length<7){
+                document.getElementById("passerror").innerHTML = "Password require minimum 7 characters";
+                flag = 0; 
+
+            }else{
+                document.getElementById("passerror").innerHTML = "";
+                flag = 1;
+            }
+           if (flag){
+               return true;
+           }else{
+               return false;
+           }
+        };
+    </script>
+</body>
+
+</html>
